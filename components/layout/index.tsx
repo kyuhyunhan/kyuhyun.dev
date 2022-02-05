@@ -36,7 +36,7 @@ function Header() {
       <nav>
         <Link href="/wiki">wiki</Link>
         <Link href="/blog">blog</Link>
-        <Link href="/about">abountMe</Link>
+        <Link href="/about">abouttMe</Link>
       </nav>
     </StyledHeader>
   );
