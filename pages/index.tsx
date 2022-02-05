@@ -1,9 +1,7 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import type { NextPage } from 'next';
 
-const Home: NextPage = () => {
-  return <>test</>;
+const HomePage: NextPage = () => {
+  return <>Main Contents</>;
 };
 
-export default Home;
+export default HomePage;
