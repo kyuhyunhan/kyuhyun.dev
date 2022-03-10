@@ -19,6 +19,9 @@ const StyledLayout = styled.article`
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      & > .date {
+        margin: 0;
+      }
     }
   }
 `;
@@ -32,7 +35,11 @@ function Layout({
   info: { title, subTitle, firstPublishedOn, lastEditedOn, tags, location },
   children,
 }: Props) {
-  console.log(location);
+  function handleHistoryView() {
+    window.open(
+      `https://github.com/kyuhyunhan/kyuhyun.dev/blame/main/contents/wiki/${location}.mdx`
+    );
+  }
   return (
     <StyledLayout>
       <header>
@@ -41,13 +48,11 @@ function Layout({
 
         <Tags tags={tags} />
 
-        <a
-          className="dates"
-          href={`https://github.com/kyuhyunhan/kyuhyun.dev/blame/main/contents/wiki/${location}.mdx`}
-        >
-          <div className="date">최초작성일: {firstPublishedOn}</div>
-          <div className="date">최종수정일: {lastEditedOn}</div>
-        </a>
+        <div className="dates">
+          <p className="date">최초 작성일: {firstPublishedOn}</p>
+          <p className="date">최종 수정일: {lastEditedOn}</p>
+          <button onClick={handleHistoryView}>view history</button>
+        </div>
       </header>
       <div>{children}</div>
       <footer>목록으로</footer>
