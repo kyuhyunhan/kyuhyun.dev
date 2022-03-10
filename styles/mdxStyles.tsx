@@ -2,5 +2,6 @@ import styled from 'styled-components';
 import THEME from '@constants/theme';
 
 export const H1 = styled.h1`
-  color: ${THEME.COLOR.main};
+  font-size: 2em;
 `;
+export const H2 = styled.h2``;
