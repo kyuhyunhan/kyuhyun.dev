@@ -53,6 +53,15 @@ export const getStaticProps = async () => {
       path.join('contents/wiki', filename),
       'utf-8'
     );
+    /*
+      import { DateTime } from 'luxon'
+    const postDataSortByDate = posts.sort((a, b) => {
+    const beforeDate = DateTime.fromFormat(a.frontmatter.date, 'M/d/yyyy')
+    const afterDate = DateTime.fromFormat(b.frontmatter.date, 'M/d/yyyy')
+    return afterDate - beforeDate
+  })
+
+    */
     const { data: frontMatter } = matter(markdownWithMeta);
     return {
       frontMatter,
