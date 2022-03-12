@@ -6,9 +6,9 @@ const Tag = styled.span`
   color: ${THEME.COLOR.gray.dark};
 `;
 
-interface Props {
+type Props = {
   tags: string[];
-}
+};
 
 function Tags({ tags }: Props) {
   return (

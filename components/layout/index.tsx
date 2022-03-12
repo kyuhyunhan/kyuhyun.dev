@@ -41,13 +41,11 @@ function Header() {
     </StyledHeader>
   );
 }
-type MainProps = WithChildren;
-function Main({ children }: MainProps) {
+function Main({ children }: WithChildren) {
   return <StyledMain>{children}</StyledMain>;
 }
 
-type LayoutProps = WithChildren;
-function Layout({ children }: LayoutProps) {
+function Layout({ children }: WithChildren) {
   return (
     <StyledLayout>
       <Header />

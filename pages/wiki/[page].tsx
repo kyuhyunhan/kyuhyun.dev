@@ -1,25 +1,25 @@
+import type { NextPage } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { MDXProvider } from '@mdx-js/react';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import Layout from '@components/wiki/Layout';
-import { H1, H2 } from '@styles/mdxStyles';
+import PageLayout from '@components/wiki/PageLayout';
+import { mdxComponents } from '@utils';
 
-const mdxComponents = {
-  h1: H1,
-  h2: H2,
-};
-
-const WikiPage = ({ layoutInfo, mdxSource }: any) => {
+const WikiPage: NextPage<{
+  layoutInfo: FrontMatter;
+  mdxSource: MDXRemoteSerializeResult;
+}> = ({ layoutInfo, mdxSource }) => {
+  console.log(mdxSource);
   return (
-    <Layout info={layoutInfo}>
+    <PageLayout info={layoutInfo}>
       <MDXProvider components={mdxComponents}>
         <MDXRemote {...mdxSource} components={{ SyntaxHighlighter }} />
       </MDXProvider>
-    </Layout>
+    </PageLayout>
   );
 };
 export default WikiPage;

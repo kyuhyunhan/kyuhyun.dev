@@ -5,45 +5,49 @@ import matter from 'gray-matter';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 
-const WikiPage: NextPage = ({ wikis }: any) => {
+const Wiki: NextPage<{
+  pages: {
+    frontMatter: FrontMatter;
+    path: string;
+  }[];
+}> = ({ pages }) => {
   return (
-    <div className="mt-5">
-      {wikis.map((post: any, index: any) => (
-        <Link href={'/wiki/' + post.slug} passHref key={index}>
-          <div style={{ maxWidth: '540px' }}>
-            <div>
-              <h5>{post.frontMatter.title}</h5>
-              <p>{post.frontMatter.description}</p>
-              <p>
-                <small>{post.frontMatter.date}</small>
-              </p>
-            </div>
-          </div>
+    <div>
+      {pages.map((page: any, index: any) => (
+        <Link href={'/wiki/' + page.path} passHref key={index}>
+          <article>
+            <p>{page.frontMatter.title}</p>
+            <p>{page.frontMatter.description}</p>
+            <p>
+              <small>{page.frontMatter.date}</small>
+            </p>
+          </article>
         </Link>
       ))}
     </div>
   );
 };
 
-export default WikiPage;
+export default Wiki;
 
 export const getStaticProps = async () => {
   const files = fs.readdirSync(path.join('contents/wiki'));
 
-  const wikis = files.map((filename) => {
+  const pages = files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
       path.join('contents/wiki', filename),
       'utf-8'
     );
     const { data: frontMatter } = matter(markdownWithMeta);
+    console.log('###', frontMatter);
     return {
       frontMatter,
-      slug: filename.split('.')[0],
+      path: filename.split('.')[0],
     };
   });
   return {
     props: {
-      wikis,
+      pages,
     },
   };
 };

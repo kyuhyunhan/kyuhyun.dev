@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Tags from '@components/wiki/Tags';
 
-const StyledLayout = styled.article`
+const StyledPageLayout = styled.article`
   position: relative;
 
   & > header {
@@ -26,22 +26,17 @@ const StyledLayout = styled.article`
   }
 `;
 
-interface Props {
-  info: any;
-  children: React.ReactNode;
-}
-
-function Layout({
+function PageLayout({
   info: { title, subTitle, firstPublishedOn, lastEditedOn, tags, location },
   children,
-}: Props) {
+}: WithChildren<{ info: FrontMatter }>) {
   function handleHistoryView() {
     window.open(
       `https://github.com/kyuhyunhan/kyuhyun.dev/blame/main/contents/wiki/${location}.mdx`
     );
   }
   return (
-    <StyledLayout>
+    <StyledPageLayout>
       <header>
         <h1 className="title">{title}</h1>
         <h2 className="subTitle">{subTitle}</h2>
@@ -56,7 +51,7 @@ function Layout({
       </header>
       <div>{children}</div>
       <footer>목록으로</footer>
-    </StyledLayout>
+    </StyledPageLayout>
   );
 }
-export default Layout;
+export default PageLayout;
