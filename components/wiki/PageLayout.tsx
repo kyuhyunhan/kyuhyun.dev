@@ -1,30 +1,5 @@
 import styled from 'styled-components';
-
 import Tags from '@components/wiki/Tags';
-
-const StyledPageLayout = styled.article`
-  position: relative;
-
-  & > header {
-    & > .title {
-      margin-block-start: 0.5em;
-      margin-block-end: 0.5em;
-      font-size: 2.5rem;
-    }
-    & > .subTitle {
-      margin-block-start: 0.5em;
-      margin-block-end: 0.5em;
-    }
-    & > .dates {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      & > .date {
-        margin: 0;
-      }
-    }
-  }
-`;
 
 function PageLayout({
   frontMatter: {
@@ -62,3 +37,27 @@ function PageLayout({
   );
 }
 export default PageLayout;
+
+const StyledPageLayout = styled.article`
+  position: relative;
+
+  & > header {
+    & > .title {
+      margin-block-start: 0.5em;
+      margin-block-end: 0.5em;
+      font-size: 2.5rem;
+    }
+    & > .subTitle {
+      margin-block-start: 0.5em;
+      margin-block-end: 0.5em;
+    }
+    & > .dates {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      & > .date {
+        margin: 0;
+      }
+    }
+  }
+`;

@@ -43,7 +43,7 @@ export const getStaticProps = async ({ params: { page } }: any) => {
   const mdxSource = await serialize(content);
   return {
     props: {
-      layoutInfo: frontMatter,
+      frontMatter,
       page,
       mdxSource,
     },

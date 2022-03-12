@@ -6,17 +6,13 @@ const Tag = styled.span`
   color: ${THEME.COLOR.gray.dark};
 `;
 
-type Props = {
-  tags: string[];
-};
-
-function Tags({ tags }: Props) {
+function Tags({ tags }: { tags: string[] }) {
   return (
-    <div>
-      {tags.map((tag, i) => {
+    <>
+      {tags.map((tag: string, i: number) => {
         return <Tag key={`${i}${tag}`}>#{tag}</Tag>;
       })}
-    </div>
+    </>
   );
 }
 export default Tags;
