@@ -9,13 +9,11 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import PageLayout from '@components/wiki/PageLayout';
 import { mdxComponents } from '@utils';
 
-const WikiPage: NextPage<{
-  layoutInfo: FrontMatter;
-  mdxSource: MDXRemoteSerializeResult;
-}> = ({ layoutInfo, mdxSource }) => {
-  console.log(mdxSource);
+const WikiPage: NextPage<
+  WithFrontMatter<{ mdxSource: MDXRemoteSerializeResult }>
+> = ({ frontMatter, mdxSource }) => {
   return (
-    <PageLayout info={layoutInfo}>
+    <PageLayout frontMatter={frontMatter}>
       <MDXProvider components={mdxComponents}>
         <MDXRemote {...mdxSource} components={{ SyntaxHighlighter }} />
       </MDXProvider>

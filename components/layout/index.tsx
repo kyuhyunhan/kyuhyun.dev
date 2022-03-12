@@ -31,12 +31,20 @@ function Header() {
   return (
     <StyledHeader>
       <h1>
-        <Link href="/">Kyuhyun.dev</Link>
+        <Link href="/">
+          <a>Kyuhyun.dev</a>
+        </Link>
       </h1>
       <nav>
-        <Link href="/wiki">wiki</Link>
-        <Link href="/blog">blog</Link>
-        <Link href="/about">aboutMe</Link>
+        <Link href="/wiki">
+          <a>wiki</a>
+        </Link>
+        <Link href="/blog">
+          <a>blog</a>
+        </Link>
+        <Link href="/about">
+          <a>aboutMe</a>
+        </Link>
       </nav>
     </StyledHeader>
   );

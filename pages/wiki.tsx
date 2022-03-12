@@ -6,22 +6,21 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 
 const Wiki: NextPage<{
-  pages: {
-    frontMatter: FrontMatter;
-    path: string;
-  }[];
+  pages: WithFrontMatter<{ path: string }>[];
 }> = ({ pages }) => {
   return (
     <div>
-      {pages.map((page: any, index: any) => (
-        <Link href={'/wiki/' + page.path} passHref key={index}>
-          <article>
-            <p>{page.frontMatter.title}</p>
-            <p>{page.frontMatter.description}</p>
-            <p>
-              <small>{page.frontMatter.date}</small>
-            </p>
-          </article>
+      {pages.map((page: WithFrontMatter<{ path: string }>, i: number) => (
+        <Link href={'/wiki/' + page.path} passHref key={i}>
+          <a>
+            <article>
+              <p>{page.frontMatter.title}</p>
+              <p>{page.frontMatter.subTitle}</p>
+              {page.frontMatter.tags.map((tag: string, j: number) => {
+                return <span key={j}>{tag}</span>;
+              })}
+            </article>
+          </a>
         </Link>
       ))}
     </div>

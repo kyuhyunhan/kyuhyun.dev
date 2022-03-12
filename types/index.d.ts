@@ -9,3 +9,4 @@ type FrontMatter = {
 };
 
 type WithChildren<T = {}> = T & { children?: React.ReactNode };
+type WithFrontMatter<T = {}> = T & { frontMatter: FrontMatter };

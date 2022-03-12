@@ -27,9 +27,16 @@ const StyledPageLayout = styled.article`
 `;
 
 function PageLayout({
-  info: { title, subTitle, firstPublishedOn, lastEditedOn, tags, location },
+  frontMatter: {
+    title,
+    subTitle,
+    firstPublishedOn,
+    lastEditedOn,
+    tags,
+    location,
+  },
   children,
-}: WithChildren<{ info: FrontMatter }>) {
+}: WithFrontMatter & WithChildren) {
   function handleHistoryView() {
     window.open(
       `https://github.com/kyuhyunhan/kyuhyun.dev/blame/main/contents/wiki/${location}.mdx`
