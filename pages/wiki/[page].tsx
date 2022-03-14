@@ -23,7 +23,11 @@ const WikiPage: NextPage<
 export default WikiPage;
 
 export const getStaticPaths = async () => {
-  const files = fs.readdirSync(path.join('contents/wiki'));
+  const files = fs
+    .readdirSync(path.join('contents/wiki'))
+    .filter((fileName) => {
+      return !fs.statSync(`contents/wiki/${fileName}`).isDirectory();
+    });
   const paths = files.map((filename) => ({
     params: {
       page: filename.replace('.mdx', ''),
