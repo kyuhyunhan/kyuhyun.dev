@@ -1,4 +1,6 @@
-# To do (updated.220313)
+(updated.220313)
+
+# To do
 
 - ~~Headless UI 위키 작성~~
 - 작업 안한 페이지 표시
@@ -17,7 +19,7 @@
 
 ### 위키 주제로 쓸만한 것
 
-- CSS 3D
+- ~~CSS 3D~~
 - CSS Animation
 - JS event delegation
 - JS scroll event
