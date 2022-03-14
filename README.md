@@ -30,4 +30,7 @@
 - console.log
   - [Use console.log() like a pro](https://markodenic.com/use-console-log-like-a-pro/)
 - Bubbling & Capturing
+
   - [React: Event Bubbling and Capturing](https://www.robinwieruch.de/react-event-bubbling-capturing/)
+
+- POP (protocol oriented programming)
