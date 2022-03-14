@@ -110,7 +110,7 @@ const StyledWiki = styled.ul`
     border-radius: 0.5em;
     padding: 0.3rem 1rem;
     margin: 0;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     transition: 0.2s;
 
     &:hover {
