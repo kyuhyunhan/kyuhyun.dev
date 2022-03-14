@@ -1,0 +1,40 @@
+---
+id: w0002
+title: CSS 3D
+subTitle: CSS 3D 구현
+firstPublishedOn: '2022.03.15'
+lastEditedOn: '2022.03.15'
+tags: ['css', '3d']
+location: 'css/css-3d'
+---
+
+# perspective 속성
+
+`perspective` 속성에 `px`, `rem`, `em`, `cm` 등 [length type](https://developer.mozilla.org/ko/docs/Web/CSS/length)의 값을 입력한다. 이 값은 `z=0` 인 면으로부터 유저와의 거리를 셋팅하는 값이다.
+다시 말해서, 이 속성이 부여된 엘리먼트로부터 유저가 얼마나 떨어져있는지를 값으로 설정하는 속성이다. 값이 더 커질수록 엘리먼트로부터 유저가 멀어지게 되고, 작을수록 유저와 엘리먼트의 거리가 가까어진다.
+따라서, 숫자가 작을 수록 3d 효과가 더 극적으로 표현된다.
+
+수치뿐만 아니라 `inherit`, `initial`, `revert`, `unset`과 같은 값도 사용할 수 있다.
+
+### perspective-origin 속성
+
+이 속성은 유저가 어느 포지션에서 엘리먼트를 바라보고 있는지(**소실점**)를 결정한다.
+
+### container를 3d space로 설정하는 경우
+
+`perspective` 속성은 기본적으로 3d 효과를 일으키는 자식 엘리먼트들의 부모 엘리먼트에 설정할 수 있다. <br/>
+`perspective-origin` 또한 부모 엘리먼트에 부여한다. <br/>
+이 때, 부모 엘리먼트에 부여한 3d 속성이 자식 엘리먼트로 전달되기 위해서는 부모 하위 엘리먼트에 `transform-style: preserve-3d` 속성을 설정해주어야 한다.
+
+### item에 속성을 부여하는 경우 (transform)
+
+3d 공간이 아닌 개별 엘리먼트에 3d 효과를 주고자 할 때에는, 직접 `transform: perspective()` 값을 주어 형태를 변형할 수 있다. `perspective()` 의 값으로는 마찬가지로 수치를 넣어 사용하면 된다.
+
+# backface-visibility 속성
+
+css로 3d 작업을 하다보면 `transform: rotateY(180deg)`와 같은 속성을 주어 엘리먼트의 앞뒤를 뒤집을 때가 있다. 이 때 기본적으로는 엘리먼터의 전면 형태가 뒤집힌 형태로 디스플레이 되는데, 이를 막고자 `bacakface-visibility: hidden` 값을 부여한다.
+물론 기본값은 `backface-visibility: visible` 로 되어있다.
+
+## References
+
+- [CSS-Tricks - perspective](https://css-tricks.com/almanac/properties/p/perspective/)

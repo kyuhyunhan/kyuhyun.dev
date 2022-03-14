@@ -46,14 +46,7 @@ const Wiki: NextPage<{
 export default Wiki;
 
 export const getStaticProps = async () => {
-  const files = fs.readdirSync(path.join('contents/wiki'));
-
-  const pages = files.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(
-      path.join('contents/wiki', filename),
-      'utf-8'
-    );
-    /*
+  /*
       import { DateTime } from 'luxon'
     const postDataSortByDate = posts.sort((a, b) => {
     const beforeDate = DateTime.fromFormat(a.frontmatter.date, 'M/d/yyyy')
@@ -62,12 +55,38 @@ export const getStaticProps = async () => {
   })
 
     */
+  const rootFiles = fs
+    .readdirSync(path.join('contents/wiki'))
+    .filter((fileName) => {
+      return !fs.statSync(`contents/wiki/${fileName}`).isDirectory();
+    });
+  const rootPages = rootFiles.map((filename) => {
+    const markdownWithMeta = fs.readFileSync(
+      path.join('contents/wiki', filename),
+      'utf-8'
+    );
+
     const { data: frontMatter } = matter(markdownWithMeta);
     return {
       frontMatter,
       path: filename.split('.')[0],
     };
   });
+  const cssFiles = fs.readdirSync(path.join('contents/wiki/css'));
+  const cssPages = cssFiles.map((filename) => {
+    const markdownWithMeta = fs.readFileSync(
+      path.join('contents/wiki/css', filename),
+      'utf-8'
+    );
+
+    const { data: frontMatter } = matter(markdownWithMeta);
+    return {
+      frontMatter,
+      path: `css/${filename.split('.')[0]}`,
+    };
+  });
+
+  const pages = [...rootPages, ...cssPages];
   return {
     props: {
       pages,
