@@ -36,3 +36,26 @@
   - [React: Event Bubbling and Capturing](https://www.robinwieruch.de/react-event-bubbling-capturing/)
 
 - POP (protocol oriented programming)
+
+### 커밋 형식
+
+- \[WIP\] (선택사항)
+- \[작업종류\]
+  - pub: 위키, 포스팅 첫번째 발행
+  - edit: 위키, 포스팅 수정
+  - feat: 기능 추가
+  - fix: 기능, 스타일링 수정
+- \[작업항목\] (작업종류가 pub, wiki인 경우)
+  - wiki: 위키
+  - blog: 블로그
+- \[id\] (작업종류가 pub, wiki인 경우)
+- 경로 (작업종류가 pub, wiki인 경우)
+- 작업내용 (작업종류가 feat, fix인 경우)
+
+ex1. 위키 첫 발행
+
+- \[pub\]\[wiki\]\[w0001\]headless-ui-component
+
+ex2. 기능 추가 작업중
+
+- \[WIP\]\[feat\]검색기능 추가
