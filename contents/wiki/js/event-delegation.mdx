@@ -1,0 +1,76 @@
+---
+id: w0003
+title: event delegation
+subTitle: 자바스크립트 이벤트 위임
+firstPublishedOn: '2022.03.15'
+lastEditedOn: '2022.03.15'
+tags: ['js', 'event']
+location: 'js/event-delegation'
+---
+
+### 주의
+
+자바스크립트 이벤트 위임은 반드시 버블링(bubbling)이 발생하는 이벤트에 한정해서 사용할 수 있다.
+버블링이 일어나지 않는 이벤트로는 `focus` `blur` 등이 있으며 정확한 정보는 [여기](https://en.wikipedia.org/wiki/DOM_events#Events)에서 확인할 수 있다.
+
+# 사용 이유
+
+예를 들어 아래와 같은 DOM 구조가 있다고 하자.
+
+<SyntaxHighlighter language="html">
+  {`
+    <div class="container">
+      <div class="item"/>
+      <div class="item"/>
+      <div class="item"/>
+    </div>
+`}
+</SyntaxHighlighter>
+
+각 `item` 클래스 엘리먼트의 클릭 이벤트가 발생할 때 어떤 동작을 실행하는 경우,
+가장 단순하게 생각해 볼 수 있는 방법은 각 item 이벤트 별로 이벤트 핸들링을해주는 방법일 것이다.
+
+<SyntaxHighlighter language="javascript">
+  {`
+    const items = document.querySelectAll('.item');
+
+    function clickHandler() {}
+
+    items.[0].addEventListener('click', clickHandler);
+    items.[1].addEventListener('click', clickHandler);
+    items.[2].addEventListener('click', clickHandler);
+
+`}
+
+</SyntaxHighlighter>
+
+그러나 만약 `item` 클래스 엘리먼트의 갯수가 10개라면?<br/>
+혹은 이와 같은 방식으로 이벤트 핸들링을 해주어야하는 엘리먼트의 종류가 20개라면?<br/>
+단순히 생각해보아도 `addEventListener`를 설정하는 엘리먼트가 많아질수록 그만큼 메모리를 사용하는 것이니, 성능을 저하시킬 것으로 예상된다.
+
+이벤트핸들링이 많아질수록 성능에 어떤 영향을 끼치는지 단순 비교를 해본 테스트들이 있다. 그러나 실제 유저가 차이를 느낄정도의 성능저하는 아니라고 한다.
+
+- 참고: [stackoverflow - Does adding too many event listeners affect performance?](https://stackoverflow.com/questions/28627606/does-adding-too-many-event-listeners-affect-performance)
+
+<br />
+퍼포먼스 측면 뿐만 아니라 각 타겟 엘리먼트에 이벤트 핸들링을 거는 것은 코드양을 불필요하게
+많아지게 하는 단점도 있다. (뭐든 줄일 수 있는 건 줄이는 게 좋다.)
+
+# 사용 방법
+
+이러한 여타의 단점들을 우리는 **이벤트 위임**을 이용해 해소할 수 있다.
+
+<SyntaxHighlighter language="javascript">
+  {`
+    const containerElem = document.querySelect('.container');
+    
+    containerElem.addEventListener('click', function(event) {
+      const targetElem = event.target;
+      
+    })
+`}
+</SyntaxHighlighter>
+
+이벤트 위임을 실행하는 방법은 간단하다. 이벤트를 일으키고자하는 엘리먼트들의 **부모**엘리먼트에 이벤트리스너를 걸어주면 된다.
+모든 이벤트리스너 콜백함수들은 `event` 객체를 파라미터로 받게 되어있다. 이 객체의 `target` 값을 조회하면 실제 이벤트가 발생한 엘리먼트에 접근할 수 있게 된다. (`currentTarget`이 아니다!)<br/>
+이제 이 `event.target` 값을 이용해서 모든 클릭이벤트에 대한 로직을 구현하면 된다!

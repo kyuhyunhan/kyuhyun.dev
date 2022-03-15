@@ -85,8 +85,21 @@ export const getStaticProps = async () => {
       path: `css/${filename.split('.')[0]}`,
     };
   });
+  const jsFiles = fs.readdirSync(path.join('contents/wiki/js'));
+  const jsPages = jsFiles.map((filename) => {
+    const markdownWithMeta = fs.readFileSync(
+      path.join('contents/wiki/js', filename),
+      'utf-8'
+    );
 
-  const pages = [...rootPages, ...cssPages];
+    const { data: frontMatter } = matter(markdownWithMeta);
+    return {
+      frontMatter,
+      path: `js/${filename.split('.')[0]}`,
+    };
+  });
+
+  const pages = [...rootPages, ...cssPages, ...jsPages];
   return {
     props: {
       pages,
