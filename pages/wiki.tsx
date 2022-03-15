@@ -100,6 +100,12 @@ export const getStaticProps = async () => {
   });
 
   const pages = [...rootPages, ...cssPages, ...jsPages];
+  pages.sort((a, b) => {
+    return (
+      Date.parse(b.frontMatter.lastEditedOn) -
+      Date.parse(a.frontMatter.lastEditedOn)
+    );
+  });
   return {
     props: {
       pages,
