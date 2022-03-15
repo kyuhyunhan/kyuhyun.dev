@@ -21,7 +21,7 @@
 
 - ~~CSS 3D~~
 - CSS Animation
-- JS event delegation
+- ~~JS event delegation~~
 - JS scroll event
 - this
   - [this는 어렵지 않습니다](https://blueshw.github.io/2018/03/12/this/)
