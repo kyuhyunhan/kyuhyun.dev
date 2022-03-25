@@ -33,3 +33,24 @@ export const CODE = styled.code`
 `;
 
 export const STRONG = styled.strong``;
+
+// export const QUOTE = ({ children }: any) => {
+//   return <blockquote>&ldquo;{children}&rdquo;</blockquote>;
+// };
+export const QUOTE = styled.blockquote`
+  position: relative;
+  margin: 0;
+  & > p {
+    font-size: 1.2rem;
+    color: ${THEME.COLOR.gray.dark};
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    width: 0.4em;
+    height: 100%;
+    background-color: ${THEME.COLOR.gray.dark};
+  }
+`;

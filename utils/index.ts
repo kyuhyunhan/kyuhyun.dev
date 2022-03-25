@@ -1,4 +1,15 @@
-import { H1, H2, H3, H4, H5, P, LINK, CODE, STRONG } from '@styles/mdxStyles';
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  P,
+  LINK,
+  CODE,
+  STRONG,
+  QUOTE,
+} from '@styles/mdxStyles';
 
 export const mdxComponents = {
   h1: H1,
@@ -10,4 +21,5 @@ export const mdxComponents = {
   a: LINK,
   code: CODE,
   strong: STRONG,
+  blockquote: QUOTE,
 };
