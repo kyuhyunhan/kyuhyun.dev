@@ -1,0 +1,30 @@
+---
+id: w0004
+title: webpack
+subTitle: webpack에 관해 알게된 것들을 정리하자
+firstPublishedOn: '2022.03.26'
+lastEditedOn: '2022.03.26'
+tags: ['bundle', 'webpack']
+location: 'webpack'
+---
+
+# Resolve
+
+개발을 하다보니
+
+<SyntaxHighlighter language="javascript">
+  {`
+    import React from 'react'
+  `}
+</SyntaxHighlighter>
+와 같이 `node_modules` 폴더에서 바로 모듈을 불러오는 경우가 많은데, 생각해보니 이
+상대경로는 어디에서 alias 처리를 하고 있는건지 궁금해서 찾아보게 되었다.
+
+webpack의 [resolve](https://webpack.js.org/configuration/resolve/) 옵션에서 처리하고 있고, 이 옵션에서 직접 세팅을 커스터마이징할 수 있다.
+그렇다면 셋팅을 안하고 쓰는 경우 기본값은?
+
+위 페이지에서
+
+> ... Webpack provides reasonable defaults, ...
+
+라고만 언급을 하고 있어서 정확한 세팅이 뭔지는 모르겠지만, [resolve-enhanced](https://github.com/webpack/enhanced-resolve)를 이용해서 내부적으로 처리를 하고 있는 듯하다.
