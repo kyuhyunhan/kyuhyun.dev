@@ -22,8 +22,10 @@ const Wiki: NextPage<{
                 <p className="lastEditedDate">
                   {page.frontMatter.lastEditedOn}
                 </p>
-                <p className="title">{page.frontMatter.title}</p>
-                <p className="subTitle">{page.frontMatter.subTitle}</p>
+                <div className="titles">
+                  <p className="title">{page.frontMatter.title}</p>
+                  <p className="subTitle">{page.frontMatter.subTitle}</p>
+                </div>
 
                 <p className="tags">
                   {page.frontMatter.tags.map((tag: string, j: number) => {
@@ -46,15 +48,6 @@ const Wiki: NextPage<{
 export default Wiki;
 
 export const getStaticProps = async () => {
-  /*
-      import { DateTime } from 'luxon'
-    const postDataSortByDate = posts.sort((a, b) => {
-    const beforeDate = DateTime.fromFormat(a.frontmatter.date, 'M/d/yyyy')
-    const afterDate = DateTime.fromFormat(b.frontmatter.date, 'M/d/yyyy')
-    return afterDate - beforeDate
-  })
-
-    */
   const rootFiles = fs
     .readdirSync(path.join('contents/wiki'))
     .filter((fileName) => {
@@ -142,19 +135,27 @@ const StyledWiki = styled.ul`
     margin: 0;
     color: ${THEME.COLOR.gray.dark};
   }
+  & .titles {
+    display: flex;
+    width: 100%;
+  }
   & .title {
-    margin: 0.3rem 0;
+    margin: 0.3rem auto 0.3rem 0;
     font-size: 1.3rem;
     font-weight: bold;
   }
   & .subTitle {
-    margin: 0;
+    margin: 0.3rem 0;
+    width: 50%;
     color: #000;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   & .tags {
     margin: 0;
-    margin-top: 0.5rem;
     color: ${THEME.COLOR.gray.dark};
     & .tag {
       margin-right: 1rem;
