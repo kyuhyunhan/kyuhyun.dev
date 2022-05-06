@@ -1,0 +1,44 @@
+---
+id: w0006
+title: JavaScript Scope
+subTitle: 자바스크립트 Scope에 관한 것들
+firstPublishedOn: '2022.05.06'
+lastEditedOn: '2022.05.06'
+tags: ['js', 'scope']
+location: 'js/scope'
+---
+
+# KEY POINT
+
+`var` 키워드는 **function scope** 이고, `let`,`const` 키워드는 **block scope** 이다.
+
+<hr />
+
+# JavaScript와 Scope
+
+원래 자바스크립트는 타 프로그래밍 언어에 존재하는 **block scope**이라는 개념이 존재하지 않았다. 이 때문에 `var` 키워드만 존재하던 ES5까지는 변수 사용에 관련된 어려움들이 있었다.
+ES6에서 `let`키워드와 `const`키워드를 도입함으로 이 문제를 해결했다.
+
+# 이해를 위한 코드 예시
+
+### EX1)
+
+<SyntaxHighlighter language="javascript">
+  {`
+    var GLOBAL = null;
+
+    var firstFn = function() {
+      var localToFirstFn = 'first';
+      secondFn()
+    }
+    var secondFn = function() {
+      GLOBAL = localToFirstFn
+    }
+
+    firstFn() // Uncaught ReferenceError: localToFirstFn is not defined
+
+`}
+
+</SyntaxHighlighter>
+`secondFn()`은 `localToFirstFn` 변수에 접근할 수없다. `firstFn`로 실행된 function scope와 `secondFn` 으로 실행된 function scope은 완전히 별개의 scope이기 때문이다.
+만약 `secondFn`이 `firstFn` 내부에서 선언이 되었다면 `localToFirstFn`에 접근 가능하다.
